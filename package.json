@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "docker:build": "docker build -f ./docker/Server.Dockerfile -t honeypot .",
-    "docker:shell": "docker run -p 49154:22 -h honeypot -ti -v $(pwd)/workspace:/workspace honeypot /bin/bash ",
-    "docker:ssh:start": "docker run -d -p 49154:22 -v $(pwd)/workspace:/workspace honeypot",
-    "docker:ssh:connect": "ssh localhost -p 49154"
+    "docker:shell": "docker run -p 49154:22 -h honeypot -ti -v $(pwd)/workspace:/workspace honeypot /bin/bash",
+    "ssh": "ssh -i workspace/data/user localhost -p 49154 -l root",
+    "debug": "ssh -v -i workspace/data/user localhost -p 49154 -l root"
   },
   "author": "",
   "license": "ISC"
