@@ -11,7 +11,7 @@ echo "Generating user keys..."
 ssh-keygen -f /workspace/data/user -q -P ""
 
 echo "Signing the user's public key with the CA's private key"
-ssh-keygen -s /workspace/data/ca_user -I user_certificate -n root /workspace/data/user.pub
+ssh-keygen -s /workspace/data/ca_user -I user_certificate -t rsa-sha2-256 -n root /workspace/data/user.pub
 
 echo "Adding user CA's public key to host's ssh config"
 echo "TrustedUserCAKeys /workspace/data/ca_user.pub" >> /etc/ssh/sshd_config
@@ -21,7 +21,7 @@ echo "Generating CA host keys..."
 ssh-keygen -f /workspace/data/ca_host -q -P ""
 
 echo "Signing the host's public key with the CA's private key"
-ssh-keygen -s /workspace/data/ca_host -I host_certificate -h /etc/ssh/ssh_host_rsa_key
+ssh-keygen -s /workspace/data/ca_host -I host_certificate -t rsa-sha2-256 -h /etc/ssh/ssh_host_rsa_key
 
 echo "Adding host CA's public key to host's ssh config"
 echo "HostCertificate /etc/ssh/ssh_host_rsa_key-cert.pub" >> /etc/ssh/sshd_config
